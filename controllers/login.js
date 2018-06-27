@@ -1,5 +1,8 @@
 const checkUser = (db,bcrypt) => (req,response) => {
 	const {email,password} = req.body;
+	if(!email || !password){
+		return response.status(404).json("Incorrect Login Details");
+	}
 	db('login')
 	.where('email',email)
 	.then(loginDetails => {

@@ -30,7 +30,7 @@ app.use(bodyParser.json());
 app.use(cors());
 
 app.get('/',(req,response)=>{db('users').then(userData => response.json(userData))});
-app.listen(3000,()=>{console.log("App is running on port 3000")});
+app.listen(process.env.PORT || 3000,()=>{console.log(`App is running on port ${process.env.PORT}`)});
 app.post('/login', login.checkUser(db,bcrypt));
 app.post('/register', register.registerUser(db,bcrypt)());
 app.post('/imageurl', image.imageData(clarifaiApp));
